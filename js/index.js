@@ -24,7 +24,7 @@ const userList=document.getElementById('user-list');
 const repoList=document.getElementById('repos-list');
 function createLiLogin (user){
   const li = document.createElement('li')
-  li.innerHTML=`${user.login}${user.url}`;
+  li.innerHTML=`${user.login}`;
   return li;
 }
 function appendLiLogin (li){
@@ -32,15 +32,23 @@ function appendLiLogin (li){
 }
 function createRepo (user){
   const li2=document.createElement('li')
-  li2.innerHTML=`${user.repos_url}`
+  const a= document.createElement('a')
+  a.href=user.html_url
+  a.innerText="Link Repository";
+  li2.append(a);
   return li2;
 }
 function appendRepo (li2){
    repoList.append(li2)
 }
 function createAvatar (user){
-  const imageAvatar = document.createElement('img').src=`${user.avatar_url}`
-  return imageAvatar;
+  const li = document.createElement('li')
+  const imageAvatar = document.createElement('img')
+  imageAvatar.src=user.avatar_url
+  li.style.cursor = "pointer"
+  imageAvatar.style.width="20px"
+  li.append(imageAvatar);
+  return li
 }
 function appendAvatar (imageAvatar){
   userList.append(imageAvatar)
